@@ -1,10 +1,16 @@
 package com.example.hiltviewproject.di
 
+import android.content.Context
+import androidx.room.Room
+import com.example.hiltviewproject.dao.UserDao
+import com.example.hiltviewproject.data.entity.User
 import com.example.hiltviewproject.data.remote.DogService
+import com.example.hiltviewproject.db.AppDataBase
 import com.example.hiltviewproject.utils.Constants.Companion.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -61,5 +67,25 @@ object NetworkModule {
     fun provideCurrencyService(retrofit: Retrofit): DogService =
         retrofit.create(DogService::class.java)
 
+    // room db
+/*
+
+    @Provides
+    @Singleton
+    fun providerAppDatabase(
+        @ApplicationContext context: Context
+    ):AppDataBase{
+        return Room.databaseBuilder(
+            context,
+            AppDataBase::class.java, "NewDb"
+        ).build()
+    }
+
+    @Provides
+    @Singleton
+    fun providerUserDao(appDataBase: AppDataBase):UserDao{
+        return appDataBase.userDao()
+    }
+*/
 
 }
