@@ -20,6 +20,7 @@ class MainViewModel @Inject constructor(private val repository: MainRepository):
     val response :LiveData<NetworkResult<DogResponse>> = _response
 
 
+
     fun getDogResponse() = viewModelScope.launch {
         repository.getDog().collect{ values ->
 
